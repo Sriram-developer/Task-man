@@ -21,6 +21,39 @@
     <title>Tasky</title>
 </head>
 <body>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLabel">Add New Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="imageurl" class="form-label">Image Url</label>
+          <input type="url" class="form-control" id="imageurl" placeholder="http://image.example.com/file.jpg">
+        </div>
+        <div class="mb-3">
+          <label for="tasktitle" class="form-label">Task Title</label>
+          <input type="text" class="form-control" id="tasktitle" placeholder="Resume">
+        </div>
+        <div class="mb-3">
+          <label for="tasktype" class="form-label">Task Type</label>
+          <input type="text" class="form-control" id="tasktype" placeholder="Bulid">
+        </div>
+        <div class="mb-3">
+          <label for="taskdescription" class="form-label">Task Description</label>
+          <textarea rows="6" class="form-control" id="taskdescription" placeholder="Bulid an amazing Resume ..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary rounded-pill">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -36,7 +69,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
             </ul>
-            <button type="button" class="btn btn-primary rounded-pill">
+            <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="fas fa-plus"></i> Add New</button>
           </div>
         </div>
