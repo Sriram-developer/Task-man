@@ -2,7 +2,7 @@
 const taskContainer = document.querySelector(".task__container");
 
 //Global store
-const globalStore = []; 
+let globalStore = []; 
 
 const newCard = ({
     id, 
@@ -14,7 +14,7 @@ const newCard = ({
 <div class="card">
     <div class="card-header d-flex justify-content-end gap-2">
         <button type="button" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></button>
-        <button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
+        <button type="button" id=${id} class="btn btn-outline-danger" onclick= "deleteCard.apply(this, arguments)"><i class="far fa-trash-alt" id=${id} onclick= "deleteCard.apply(this, arguments)"></i></button>
     </div>
     <img src="${imageUrl}" class="card-img-top rounded-1" alt="card__image">
     <div class="card-body">
@@ -30,7 +30,7 @@ const newCard = ({
 
 const loadInitialTaskCards = () => {
     //access localstorage
-    const getInitialData = localStorage.getItem("tasky");
+    const getInitialData = localStorage.getItem("tasky"); //null
     if (!getInitialData) return;
 
     //convert stringified-object to object
@@ -62,4 +62,30 @@ const saveChanges = () => {
        
        // add to localstorage 
        localStorage.setItem("tasky", JSON.stringify({ cards: globalStore}));
+};
+
+const deleteCard = (event) => {
+    //id
+    event = window.event;
+    const targetID = event.target.id;
+    const tagname = event.target.tagName;
+    //search the globalStore, remove the object which matches with the id
+    const newUpdatedArray = globalStore.filter(
+        (cardObject) => cardObject.id !== targetID
+    );
+    globalStore = newUpdatedArray;
+    localStorage.setItem("tasky",JSON.stringify({card: globalStore})); 
+    
+    // access DOM to remove them
+
+    if (tagname === "BUTTON"){
+        return event.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+            event.target.parentNode.parentNode.parentNode
+        );
+    }
+
+    return event.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+        event.target.parentNode.parentNode.parentNode.parentNode
+    );
+     
 };
